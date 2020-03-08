@@ -4,11 +4,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.geeksword.service.bean.IdType;
 import org.geekswrod.api.Id;
 import org.geekswrod.api.IdService;
+import org.springframework.stereotype.Service;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 @Slf4j
+@Service
 public class IdServiceImpl extends AbstractIdServiceImpl implements IdService {
 
     private long sequence = 0;

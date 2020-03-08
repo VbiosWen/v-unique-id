@@ -9,6 +9,7 @@ import org.geeksword.service.convert.IdConvertImpl;
 import org.geeksword.service.provider.MachineIdProvider;
 import org.geekswrod.api.Id;
 import org.geekswrod.api.IdService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -29,8 +30,10 @@ public abstract class AbstractIdServiceImpl implements IdService {
 
     protected long version = 0;
 
+    @Autowired
     protected IdConvert idConvert;
 
+    @Autowired
     protected MachineIdProvider machineIdProvider;
 
     protected IdType idType;
@@ -47,10 +50,10 @@ public abstract class AbstractIdServiceImpl implements IdService {
         this.idType = IdType.parse(idType);
     }
 
-    public void init(){
+    public void init() {
         this.machineId = machineIdProvider.getMachineId();
 
-        if(machineId < 0){
+        if (machineId < 0) {
             log.error("the machine id is not configure properly so that v-id service refuse to start.");
             throw new IllegalStateException("the machine id is not configure properly so that v-id service refuse to start.");
         }

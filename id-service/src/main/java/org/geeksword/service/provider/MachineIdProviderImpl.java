@@ -1,5 +1,10 @@
 package org.geeksword.service.provider;
 
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+@Component
 public class MachineIdProviderImpl implements MachineIdProvider {
     private long machineId;
 

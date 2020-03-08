@@ -2,8 +2,6 @@ package org.geeksword.service.bean;
 
 import lombok.AllArgsConstructor;
 
-import java.io.Serializable;
-
 @AllArgsConstructor
 public enum IdType {
     MAX_PEEK("max-peek"),
