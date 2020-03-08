@@ -1,4 +1,4 @@
-package org.geekswrod.registry.redis.utils;
+package org.geekswrod.registry.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;

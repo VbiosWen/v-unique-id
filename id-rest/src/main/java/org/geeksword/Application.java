@@ -1,9 +1,9 @@
-package org.geeksword.rest;
+package org.geeksword;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = "org.geeksword")
+@SpringBootApplication()
 public class Application {
 
     public static void main(String[] args) {

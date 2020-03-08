@@ -1,4 +1,4 @@
-import org.geeksword.rest.Application;
+import org.geeksword.Application;
 import org.geekswrod.api.IdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

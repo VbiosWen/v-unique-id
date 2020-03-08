@@ -1,4 +1,4 @@
-package org.geekswrod.registry.redis.utils;
+package org.geekswrod.registry.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

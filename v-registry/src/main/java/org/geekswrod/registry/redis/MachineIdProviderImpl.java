@@ -1,12 +1,13 @@
 package org.geekswrod.registry.redis;
 
 import lombok.extern.slf4j.Slf4j;
-import org.geekswrod.registry.redis.utils.IpUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+import org.geekswrod.registry.utils.IpUtils;
 
 import java.util.Objects;
 import java.util.Set;
@@ -19,6 +20,8 @@ public class MachineIdProviderImpl implements MachineIdProvider, InitializingBea
     private static final String MACHINE_ID_KEY = "machine_id";
 
     private static final ConcurrentHashMap<String, Integer> MACHINE_IP_ID = new ConcurrentHashMap<>();
+
+    private static final int MAX_MACHINE_SIZE = 1024;
 
     private Long machineId = 0L;
 
@@ -54,6 +57,16 @@ public class MachineIdProviderImpl implements MachineIdProvider, InitializingBea
         }
 
         Set members = redisTemplate.opsForSet().members(MACHINE_ID_KEY);
+
+        if (CollectionUtils.isEmpty(members)) {
+            log.error("get machine info from redis is null");
+            throw new IllegalStateException("get machine info from redis is null");
+        }
+
+        if (members.size() > MAX_MACHINE_SIZE) {
+            log.error("machine size > {}", MAX_MACHINE_SIZE);
+            throw new IllegalStateException("machine size > " + MAX_MACHINE_SIZE);
+        }
 
         int index = 0;
         for (Object member : members) {
