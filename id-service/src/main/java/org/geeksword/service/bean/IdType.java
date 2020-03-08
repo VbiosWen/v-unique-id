@@ -11,12 +11,8 @@ public enum IdType {
 
     public long value() {
         int type = 0;
-        switch (this) {
-            case MIN_GRANULARITY:
-                type = 1;
-                break;
-            default:
-                break;
+        if (this == IdType.MIN_GRANULARITY) {
+            type = 1;
         }
         return type;
     }

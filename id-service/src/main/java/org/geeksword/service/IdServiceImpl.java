@@ -40,7 +40,7 @@ public class IdServiceImpl extends AbstractIdServiceImpl implements IdService {
             validateTimestamp(lastTimestamp, timestamp);
             if (timestamp == lastTimestamp) {
                 sequence++;
-                sequence &= idMeta.getSeqBitsMask();
+                    sequence &= idMeta.getSeqBitsMask();
                 if (sequence == 0) {
                     timestamp = this.tillNextTimeUnit(lastTimestamp);
                 }

@@ -5,7 +5,6 @@ import org.geeksword.service.bean.IdMetaFactory;
 import org.geeksword.service.bean.IdType;
 import org.geekswrod.api.Id;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 @Component
 public class IdConvertImpl implements IdConvert {

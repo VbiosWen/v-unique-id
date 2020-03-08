@@ -6,11 +6,12 @@ import org.geeksword.service.bean.IdMetaFactory;
 import org.geeksword.service.bean.IdType;
 import org.geeksword.service.convert.IdConvert;
 import org.geeksword.service.convert.IdConvertImpl;
-import org.geeksword.service.provider.MachineIdProvider;
 import org.geekswrod.api.Id;
 import org.geekswrod.api.IdService;
+import org.geekswrod.registry.redis.MachineIdProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.PostConstruct;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -50,6 +51,7 @@ public abstract class AbstractIdServiceImpl implements IdService {
         this.idType = IdType.parse(idType);
     }
 
+    @PostConstruct
     public void init() {
         this.machineId = machineIdProvider.getMachineId();
 

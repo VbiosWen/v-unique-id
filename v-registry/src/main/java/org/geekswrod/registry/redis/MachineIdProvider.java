@@ -1,4 +1,4 @@
-package org.geeksword.service.provider;
+package org.geekswrod.registry.redis;
 
 public interface MachineIdProvider {
 
