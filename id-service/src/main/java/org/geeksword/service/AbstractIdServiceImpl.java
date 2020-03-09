@@ -32,7 +32,6 @@ public abstract class AbstractIdServiceImpl implements IdService {
     // 版本号，默认为0
     protected long version = 0;
 
-    @Autowired
     protected IdConvert idConvert;
 
     @Autowired
