@@ -8,7 +8,7 @@ import org.geeksword.service.convert.IdConvert;
 import org.geeksword.service.convert.IdConvertImpl;
 import org.geekswrod.api.Id;
 import org.geekswrod.api.IdService;
-import org.geekswrod.registry.redis.MachineIdProvider;
+import org.geeksword.registry.redis.MachineIdProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
@@ -38,7 +38,7 @@ public abstract class AbstractIdServiceImpl implements IdService {
     protected MachineIdProvider machineIdProvider;
 
     // 生成id 类型，默认是最大峰值型
-    protected IdType idType = IdType.MAX_PEEK;
+    protected IdType idType = IdType.MIN_GRANULARITY;
     protected IdMeta idMeta;
 
     public AbstractIdServiceImpl() {
@@ -83,11 +83,11 @@ public abstract class AbstractIdServiceImpl implements IdService {
 
     protected long genTime() {
         if (idType == IdType.MAX_PEEK) {
-            return (System.currentTimeMillis() - EPOCH) / 1000;
+            return (Instant.now().toEpochMilli() - EPOCH) / 1000;
         } else if (idType == IdType.MIN_GRANULARITY) {
-            return (System.currentTimeMillis() - EPOCH);
+            return (Instant.now().toEpochMilli() - EPOCH);
         }
-        return (System.currentTimeMillis() - EPOCH) / 1000;
+        return (Instant.now().toEpochMilli() - EPOCH) / 1000;
     }
 
     @Override

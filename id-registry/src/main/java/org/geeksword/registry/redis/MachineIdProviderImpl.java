@@ -1,4 +1,4 @@
-package org.geekswrod.registry.redis;
+package org.geeksword.registry.redis;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -8,7 +8,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
-import org.geekswrod.registry.utils.IpUtils;
+import org.geeksword.registry.utils.IpUtils;
 
 import java.util.Objects;
 import java.util.Set;

@@ -13,9 +13,9 @@ import java.util.concurrent.locks.ReentrantLock;
 @Service
 public class IdServiceImpl extends AbstractIdServiceImpl implements IdService {
 
-    private long sequence = 0;
+    private long sequence;
 
-    private long lastTimestamp = 0;
+    private long lastTimestamp;
 
     private Lock lock = new ReentrantLock();
 
@@ -38,18 +38,23 @@ public class IdServiceImpl extends AbstractIdServiceImpl implements IdService {
         try {
             long timestamp = this.genTime();
             validateTimestamp(lastTimestamp, timestamp);
+
             if (timestamp == lastTimestamp) {
                 sequence++;
-                    sequence &= idMeta.getSeqBitsMask();
+                sequence &= idMeta.getSeqBitsMask();
                 if (sequence == 0) {
                     timestamp = this.tillNextTimeUnit(lastTimestamp);
+                    // 切记，这个地方一定要赋值，不然lastTimestamp不会更新
+                    lastTimestamp = timestamp;
                 }
             } else {
                 lastTimestamp = timestamp;
                 sequence = 0;
             }
+
             id.setSeq(sequence);
             id.setTime(timestamp);
+
         } finally {
             lock.unlock();
         }

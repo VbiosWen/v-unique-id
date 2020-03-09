@@ -27,11 +27,17 @@ public class IdConvertImpl implements IdConvert {
         long ret = 0;
 
         ret |= id.getMachineId();
+
         ret |= id.getSeq() << idMeta.getSeqBitsStartPos();
+
         ret |= id.getTime() << idMeta.getTimeBitsStartPos();
+
         ret |= id.getGenMethod() << idMeta.getGenMethodBitsStartPos();
+
         ret |= id.getType() << idMeta.getTypeBitsStartPos();
+
         ret |= id.getVersion() << idMeta.getVersionBitsStartPos();
+
         return ret;
     }
 
@@ -44,8 +50,10 @@ public class IdConvertImpl implements IdConvert {
         Id ret = new Id();
         ret.setMachineId(id & idMeta.genMachineBitsMask());
         ret.setSeq(id >>> idMeta.getSeqBitsStartPos() & idMeta.getSeqBitsMask());
-
-
+        ret.setTime(id >>> idMeta.getTimeBitsStartPos() & idMeta.getTimeBitsMask());
+        ret.setGenMethod(id >>> idMeta.getGenMethodBitsStartPos() & idMeta.getGenMethodBitsMask());
+        ret.setType(id >>> idMeta.getTypeBitsStartPos() & idMeta.getTypeBitsMask());
+        ret.setVersion(id >>> idMeta.getVersionBitsStartPos() & idMeta.getVersionBitsMask());
         return ret;
     }
 }
