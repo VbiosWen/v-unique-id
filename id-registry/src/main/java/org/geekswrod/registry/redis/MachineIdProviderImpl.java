@@ -1,5 +1,6 @@
 package org.geekswrod.registry.redis;
 
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 @Component
+@NoArgsConstructor
 public class MachineIdProviderImpl implements MachineIdProvider, InitializingBean {
 
     private static final String MACHINE_ID_KEY = "machine_id";
@@ -28,7 +30,7 @@ public class MachineIdProviderImpl implements MachineIdProvider, InitializingBea
     private String machineIp = null;
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<String,String> redisTemplate;
 
 
     @Override

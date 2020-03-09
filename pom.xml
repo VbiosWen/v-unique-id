@@ -9,7 +9,7 @@
         <module>id-service</module>
         <module>id-rest</module>
         <module>id-api</module>
-        <module>v-registry</module>
+        <module>id-registry</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

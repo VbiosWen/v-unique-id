@@ -20,7 +20,7 @@
 
         <dependency>
             <groupId>org.geeksword</groupId>
-            <artifactId>v-registry</artifactId>
+            <artifactId>id-registry</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
