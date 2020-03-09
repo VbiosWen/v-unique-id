@@ -29,6 +29,7 @@ public abstract class AbstractIdServiceImpl implements IdService {
 
     protected long type = 0;
 
+    // 版本号，默认为0
     protected long version = 0;
 
     @Autowired
@@ -37,7 +38,8 @@ public abstract class AbstractIdServiceImpl implements IdService {
     @Autowired
     protected MachineIdProvider machineIdProvider;
 
-    protected IdType idType;
+    // 生成id 类型，默认是最大峰值型
+    protected IdType idType = IdType.MAX_PEEK;
     protected IdMeta idMeta;
 
     public AbstractIdServiceImpl() {

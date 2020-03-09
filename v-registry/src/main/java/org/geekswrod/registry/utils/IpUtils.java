@@ -60,7 +60,7 @@ public class IpUtils {
             inputStream = urlConnection.getInputStream();
             bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             StringBuilder resp = new StringBuilder();
-            String buf = null;
+            String buf;
             while ((buf = bufferedReader.readLine()) != null) {
                 resp.append(buf);
             }
