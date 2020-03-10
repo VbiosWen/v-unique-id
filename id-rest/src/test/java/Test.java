@@ -20,7 +20,7 @@ public class Test {
     public void testGenId() {
         long start = Instant.now().toEpochMilli();
         List<Long> list = new ArrayList<>();
-        for (int i = 0; i < 10000000; i++) {
+        for (int i = 0; i < 10; i++) {
             long l = idService.genId();
             list.add(l);
         }

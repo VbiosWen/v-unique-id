@@ -2,13 +2,13 @@ package org.geeksword.registry.redis;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.geeksword.registry.utils.IpUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
-import org.geeksword.registry.utils.IpUtils;
 
 import java.util.Objects;
 import java.util.Set;
@@ -30,7 +30,7 @@ public class MachineIdProviderImpl implements MachineIdProvider, InitializingBea
     private String machineIp = null;
 
     @Autowired
-    private RedisTemplate<String,String> redisTemplate;
+    private RedisTemplate<String, String> redisTemplate;
 
 
     @Override
@@ -78,6 +78,9 @@ public class MachineIdProviderImpl implements MachineIdProvider, InitializingBea
                 machineId = (long) index;
             }
             index++;
+        }
+        if (log.isInfoEnabled()) {
+            log.info("current machine ip is :{}, machine id is:{}", machineIp, machineId);
         }
     }
 }
