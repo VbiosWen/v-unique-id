@@ -22,6 +22,7 @@ public class Test {
         List<Long> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             long l = idService.genId();
+            System.out.println(l);
             list.add(l);
         }
         System.out.println(list.size());

@@ -56,4 +56,9 @@ public class IdConvertImpl implements IdConvert {
         ret.setVersion(id >>> idMeta.getVersionBitsStartPos() & idMeta.getVersionBitsMask());
         return ret;
     }
+
+    public static void main(String[] args){
+        Id convert = new IdConvertImpl(IdType.MAX_PEEK).convert(4618011286163166208L);
+        System.out.println(convert);
+    }
 }

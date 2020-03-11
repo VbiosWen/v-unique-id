@@ -1,6 +1,7 @@
 package org.geeksword.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.geeksword.registry.redis.MachineIdProvider;
 import org.geeksword.service.bean.IdMeta;
 import org.geeksword.service.bean.IdMetaFactory;
 import org.geeksword.service.bean.IdType;
@@ -8,7 +9,6 @@ import org.geeksword.service.convert.IdConvert;
 import org.geeksword.service.convert.IdConvertImpl;
 import org.geekswrod.api.Id;
 import org.geekswrod.api.IdService;
-import org.geeksword.registry.redis.MachineIdProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
@@ -107,24 +107,35 @@ public abstract class AbstractIdServiceImpl implements IdService {
 
     @Override
     public long makeId(long time, long seq) {
-        return 0;
+        return makeId(time, seq, genMethod);
     }
 
     @Override
-    public long makeId(long genMethod, long time, long seq, long machine) {
-        return 0;
+    public long makeId(long time, long seq, long genMethod) {
+        return makeId(time, seq, genMethod, machineId);
     }
 
     @Override
-    public long makeId(long type, long genMethod, long time, long seq, long machine) {
-        return 0;
+    public long makeId(long time, long seq, long genMethod, long machine) {
+        return makeId(time, seq, genMethod, machine, type);
     }
 
     @Override
-    public long makeId(long version, long type, long genMethod, long time, long seq, long machine) {
-        return 0;
+    public long makeId(long time, long seq, long genMethod, long machine, long type) {
+        return makeId(time, seq, genMethod, machine, type, version);
     }
 
+    @Override
+    public long makeId(long time, long seq, long genMethod, long machine, long type, long version) {
+        Id id = new Id();
+        id.setTime(time);
+        id.setSeq(seq);
+        id.setGenMethod(genMethod);
+        id.setMachineId(machine);
+        id.setType(type);
+        id.setVersion(version);
+        return idConvert.convertId(id);
+    }
 
     public void setMachineId(long machineId) {
         this.machineId = machineId;

@@ -25,11 +25,13 @@ public interface IdService {
      */
     long makeId(long time,long seq);
 
-    long makeId(long genMethod,long time,long seq,long machine);
+    long makeId(long time,long seq,long genMethod);
 
-    long makeId(long type,long genMethod,long time,long seq,long machine);
+    long makeId(long time,long seq,long genMethod,long machine);
 
-    long makeId(long version,long type,long genMethod,long time,long seq,long machine);
+    long makeId(long time,long seq,long genMethod,long machine,long type);
+
+    long makeId(long time,long seq,long genMethod,long machine,long type,long version);
 
     /**
      * 将整型时间翻译成格式化时间
