@@ -45,7 +45,12 @@ public class MachineIdProviderImpl implements MachineIdProvider, InitializingBea
             log.error("get ip error");
             throw new IllegalStateException("get ip error");
         }
-        if (!redisTemplate.hasKey(MACHINE_ID_KEY)) {
+        Boolean hasKey = redisTemplate.hasKey(MACHINE_ID_KEY);
+        if (Objects.isNull(hasKey)) {
+            log.error("redis has key error:{}", MACHINE_ID_KEY);
+            throw new IllegalStateException("connect redis error:" + MACHINE_ID_KEY);
+        }
+        if (!hasKey) {
             redisTemplate.opsForSet().add(MACHINE_ID_KEY, machineIp);
         }
 
