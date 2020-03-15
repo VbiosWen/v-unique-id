@@ -47,6 +47,18 @@
             <artifactId>dubbo-spring-boot-starter</artifactId>
             <version>${dubbo-spring-boot.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.geeksword</groupId>
+            <artifactId>id-registry</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.geeksword</groupId>
+                    <artifactId>id-dubbo</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 
     <build>
