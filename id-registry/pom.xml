@@ -30,12 +30,6 @@
             <groupId>org.geeksword</groupId>
             <artifactId>id-dubbo</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.geekswrod</groupId>
-                    <artifactId>id-registry</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 
